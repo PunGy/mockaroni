@@ -13,17 +13,14 @@
         "skipLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@src/*": ["./src/*"],
-            "@middlewares/*": ["./src/middlewares/*"],
-            "@handlers/*": ["./src/handlers/*"],
-            "@utils/*": ["./src/utils/*"]
+            "@src/*": ["./src/*"]
         }
     },
     "include": [
-        "src/**/*.ts"
+        "src/**/*.ts",
+        "test/**/*.ts"
     ],
     "exclude": [
-      "node_modules",
-      "**/*.spec.ts"
+      "node_modules"
     ],
 }

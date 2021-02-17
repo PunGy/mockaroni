@@ -37,7 +37,7 @@ export const num = (config: Config<{ min: number; max: number; type?: 'float'|'i
     if (config.nullable)
         if (trueOrFalse) return null
     const rand = Math.random() * (config.max - config.min) + config.min
-    return config.type === 'float' ? rand : Math.floor(rand)
+    return config.type === 'float' ? rand : Math.round(rand)
 }
 
 
