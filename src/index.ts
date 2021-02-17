@@ -42,7 +42,7 @@ export const num = (config: Config<{ min: number; max: number; type?: 'float'|'i
 
 
 const alphabets = {
-    en: {
+    en: {1
         capitalized: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
         normal: 'abcdefghijklmnopqrstuvwxyz',
         length: 25, // 0-25
