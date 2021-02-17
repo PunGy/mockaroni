@@ -39,7 +39,7 @@ export const num = (config: Config<{ min: number; max: number; type?: 'float'|'i
     const rand = Math.random() * (config.max - config.min) + config.min
     return config.type === 'float' ? rand : Math.round(rand)
 }
-
+num(123)
 
 const alphabets = {
     en: {1
