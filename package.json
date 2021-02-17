@@ -4,6 +4,7 @@
   "main": "index.js",
   "author": "Maxim Yakovlev <max.yakovlev555@gmail.com>",
   "license": "MIT",
+  "private": false,
   "scripts": {
     "test": "jest",
     "lint": "eslint \"**/*.{js,ts}\"",
