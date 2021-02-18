@@ -1,4 +1,4 @@
-name: Sending Codecov Report
+name: Test and send report
 on: [push]
 jobs:
   run:
