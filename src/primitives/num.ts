@@ -1,4 +1,4 @@
-import { Config, trueOrFalse } from '@src/utils'
+import { Config, trueOrFalse } from '../utils'
 
 export const num = (config: Config<{ min: number; max: number; type?: 'float'|'int'; }>) =>
 {

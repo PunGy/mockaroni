@@ -1,4 +1,4 @@
-import { Config, trueOrFalse } from '@src/utils'
+import { Config, trueOrFalse } from '../utils'
 
 export const replicate = <R>(config: Config<{ size: number; schema: (index: number) => R; }>): Array<R> =>
 {

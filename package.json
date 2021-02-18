@@ -28,7 +28,7 @@
     "test:coverage": "jest --coverage",
     "test:dev": "jest --watchAll",
     "lint": "eslint \"**/*.{js,ts}\"",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc --project tsconfig.production.json --noEmit",
     "build": "tsc --project tsconfig.production.json",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",

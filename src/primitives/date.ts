@@ -1,5 +1,5 @@
-import { Config, trueOrFalse } from '@src/utils'
-import { num } from '@src/primitives/num'
+import { Config, trueOrFalse } from '../utils'
+import { num } from '../primitives/num'
 
 export const date = (config: Config<{ min: Date; max: Date; }>): Date =>
 {
