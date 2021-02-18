@@ -5,9 +5,9 @@ describe('replicate', () =>
 {
     it('returns list of provided schema and size', () =>
     {
-        const result = replicate({ size: 5, schema: () => 1 })
+        const result = replicate({ size: 5, schema: (i) => i })
 
-        expect(result).toEqual([1, 1, 1, 1, 1])
+        expect(result).toEqual([0, 1, 2, 3, 4])
     })
 
     it('returns list of unique values', () =>
