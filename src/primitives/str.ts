@@ -5,22 +5,28 @@ const alphabets = {
     en: {
         capitalized: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
         normal: 'abcdefghijklmnopqrstuvwxyz',
-        length: 25, // 0-25
+        get mixed()
+        {
+            return this.en.normal + this.en.capitalized
+        },
     },
     ru: {
         capitalized: 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
         normal: 'абвгдеёжзийклмнопрстуфхцчшщэюя',
-        length: 29, // 0-29
+        get mixed()
+        {
+            return this.ru.normal + this.ru.capitalized
+        },
     },
-    numbers: '0123456789',
+    numbers: '000111222333444555666777888999', // duplicate number to be relativity compatible by size with language alphabets
 }
 export const str = (config: Config<{
     type?: 'alpha'|'numeric'|'alphanumeric';
     locale?: 'ru'|'en';
-    format?: 'capitalized'|'normal';
+    format?: 'capitalized'|'normal'|'mixed';
     size: {
-        min: number; // default 4
-        max: number; // default 15
+        min: number;
+        max: number;
     } | number;
 }>): string | null =>
 {
