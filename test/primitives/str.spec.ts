@@ -104,13 +104,13 @@ describe('str', () =>
 
     it('returns mixed alpha en string', () =>
     {
-        const result = str({ size: 20, locale: 'en', type: 'alpha', format: 'mixed' })
+        const result = str({ size: 10, locale: 'en', type: 'alpha', format: 'mixed' })
 
         expect(alphaMixedEnRegex.test(result)).toBeTruthy()
     })
     it('returns mixed alpha ru string', () =>
     {
-        const result = str({ size: 20, locale: 'ru', type: 'alpha', format: 'mixed' })
+        const result = str({ size: 10, locale: 'ru', type: 'alpha', format: 'mixed' })
 
         console.log(result)
 
