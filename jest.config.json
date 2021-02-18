@@ -1,0 +1,13 @@
+{
+  "globals": {
+    "ts-jest": {
+      "diagnostics": true
+    }
+  },
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "collectCoverage": true,
+  "moduleNameMapper": {
+    "^@src/(.*)$": "<rootDir>/src/$1"
+  }
+}

@@ -25,6 +25,8 @@
   ],
   "scripts": {
     "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:dev": "jest --watchAll",
     "lint": "eslint \"**/*.{js,ts}\"",
     "type-check": "tsc --noEmit",
     "build": "tsc --project tsconfig.production.json",
