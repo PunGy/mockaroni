@@ -2,19 +2,17 @@ name: CI
 on: [push]
 jobs:
   build:
-    name: Test
+    name: Node ${{ matrix.node }} sample
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [ '12', '14', '15' ]
     steps:
       - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.0.0
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build # will run `yarn build` command
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: test # will run `yarn test` command
+          node-version: ${{ matrix.node }}
+      - run: yarn install
+      - run: yarn lint
+      - run: yarn test
