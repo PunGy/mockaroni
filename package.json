@@ -1,6 +1,6 @@
 {
   "name": "mockaroni",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "author": "Maxim Yakovlev <max.yakovlev555@gmail.com>",
