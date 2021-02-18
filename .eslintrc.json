@@ -39,7 +39,7 @@
             "allowTemplateLiterals": true
         }],
 
-        "no-console": "off",
+        "no-console": "warn",
         "no-alert": "error",
         "no-extra-boolean-cast": "off",
         "array-callback-return": "error",
