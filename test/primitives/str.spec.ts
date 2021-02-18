@@ -112,8 +112,6 @@ describe('str', () =>
     {
         const result = str({ size: 10, locale: 'ru', type: 'alpha', format: 'mixed' })
 
-        console.log(result)
-
         expect(alphaMixedRuRegex.test(result)).toBeTruthy()
     })
 
