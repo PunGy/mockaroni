@@ -3,7 +3,7 @@ import { checkNullable } from '../testUtils/checkNullable'
 
 describe('range', () =>
 {
-    it('returns list of provided schema and size', () =>
+    it('returns array with provided range', () =>
     {
         const result = range({ from: 0, to: 5 })
 
