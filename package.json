@@ -12,7 +12,13 @@
     "type": "git",
     "url": "https://github.com/PunGy/mockaroni.git"
   },
-  "keywords": ["mock", "data generation"],
+  "keywords": ["mock", "data", "mocks", "json"],
+  "files": [
+    "dist/**/*",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "jest",
     "lint": "eslint \"**/*.{js,ts}\"",
