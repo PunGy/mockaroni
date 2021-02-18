@@ -1,5 +1,5 @@
 import { str } from '@src/primitives/str'
-import * as utils from '@src/utils'
+import { checkNullable } from '../testUtils/checkNullable'
 
 const alphanumericNormalEnRegex = /^[a-z0-9]+$/ // default
 const alphanumericNormalRuRegex = /^[а-яё0-9]+$/
@@ -115,14 +115,5 @@ describe('str', () =>
         expect(alphaMixedRuRegex.test(result)).toBeTruthy()
     })
 
-    it('returns possible null if "nullable" provided', () =>
-    {
-        jest.spyOn(utils, 'trueOrFalse').mockImplementationOnce(() => true)
-        const nullResult = str({ size: 5, nullable: true })
-        jest.spyOn(utils, 'trueOrFalse').mockImplementationOnce(() => false)
-        const nonNullResult = str({ size: 5, nullable: true })
-
-        expect(nullResult).toBeNull()
-        expect(nonNullResult).not.toBeNull()
-    })
+    it('returns possible null if "nullable" provided', checkNullable(str, { size: 5 }))
 })

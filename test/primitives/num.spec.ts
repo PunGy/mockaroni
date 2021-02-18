@@ -1,5 +1,5 @@
 import { num } from '@src/primitives/num'
-import * as utils from '@src/utils'
+import { checkNullable } from '../testUtils/checkNullable'
 
 describe('num', () =>
 {
@@ -17,11 +17,5 @@ describe('num', () =>
         expect(result >= 0 && result <= 10).toBeTruthy()
     })
 
-    it('returns null if "nullable" provided', () =>
-    {
-        jest.spyOn(utils, 'trueOrFalse').mockImplementationOnce(() => true)
-        const result = num({ min: 0, max: 10, nullable: true })
-
-        expect(result).toBeNull()
-    })
+    it('returns null if "nullable" provided', checkNullable(num, { min: 0, max: 10 }))
 })
