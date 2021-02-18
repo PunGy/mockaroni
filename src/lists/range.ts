@@ -1,4 +1,4 @@
-import { Config, trueOrFalse } from '@src/utils'
+import { Config, trueOrFalse } from '../utils'
 
 export const range = (config: Config<{ from: number; to: number; }>): Array<number> =>
 {

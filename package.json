@@ -1,6 +1,6 @@
 {
   "name": "mockaroni",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "author": "Maxim Yakovlev <max.yakovlev555@gmail.com>",
@@ -28,7 +28,7 @@
     "test:coverage": "jest --coverage",
     "test:dev": "jest --watchAll",
     "lint": "eslint \"**/*.{js,ts}\"",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc --project tsconfig.production.json --noEmit",
     "build": "tsc --project tsconfig.production.json",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
@@ -49,6 +49,9 @@
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.1",
     "typescript": "^4.1.5"
+  },
+  "engines": {
+    "node": ">= 8.0.0"
   },
   "config": {
     "commitizen": {

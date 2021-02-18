@@ -7,6 +7,9 @@
   "preset": "ts-jest",
   "testEnvironment": "node",
   "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.ts"
+  ],
   "moduleNameMapper": {
     "^@src/(.*)$": "<rootDir>/src/$1"
   }

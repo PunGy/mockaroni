@@ -1,5 +1,5 @@
-import { Config, trueOrFalse } from '@src/utils'
-import { num } from '@src/primitives/num'
+import { Config, trueOrFalse } from '../utils'
+import { num } from '../primitives/num'
 
 export const oneOf = <T>(config: Config<{ list: Array<T>; }>): T =>
 {

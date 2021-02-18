@@ -1,5 +1,5 @@
-import { num } from '@src/index'
-import { Config, trueOrFalse } from '@src/utils'
+import { num } from '../index'
+import { Config, trueOrFalse } from '../utils'
 
 const alphabets = {
     en: {
