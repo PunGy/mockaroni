@@ -2,16 +2,20 @@ import { str } from '@src/primitives/str'
 import * as utils from '@src/utils'
 
 const alphanumericNormalEnRegex = /^[a-z0-9]+$/ // default
-const alphanumericNormalRuRegex = /^[а-я0-9]+$/
+const alphanumericNormalRuRegex = /^[а-яё0-9]+$/
 const alphanumericCapitalizedEnRegex = /^[A-Z0-9]+$/
 const alphanumericCapitalizedRuRegex = /^[А-Я0-9]+$/
+const alphanumericMixedEnRegex = /^[a-zA-Z0-9]+$/
+const alphanumericMixedRuRegex = /^[а-яА-ЯёЁ0-9]+$/
 
 const numericRegex = /^[0-9]+$/
-const alphaEnRegex = /^[a-z]+$/
-const alphaRuRegex = /^[а-я]+$/
 
+const alphaEnRegex = /^[a-z]+$/
+const alphaRuRegex = /^[а-яё]+$/
 const alphaCapitalizedEnRegex = /^[A-Z]+$/
-const alphaCapitalizedRuRegex = /^[А-Я]+$/
+const alphaCapitalizedRuRegex = /^[А-ЯЁ]+$/
+const alphaMixedEnRegex = /^[A-Za-z]+$/
+const alphaMixedRuRegex = /^[А-Яа-яёЁ]+$/
 
 describe('str', () =>
 {
@@ -74,15 +78,43 @@ describe('str', () =>
 
     it('returns capitalized alphanumeric en string', () =>
     {
-        const result = str({ size: 5, type: 'alphanumeric', format: 'capitalized' })
+        const result = str({ size: 10, locale: 'en', type: 'alphanumeric', format: 'capitalized' })
 
         expect(alphanumericCapitalizedEnRegex.test(result)).toBeTruthy()
     })
     it('returns capitalized alphanumeric ru string', () =>
     {
-        const result = str({ size: 5, locale: 'ru', type: 'alphanumeric', format: 'capitalized' })
+        const result = str({ size: 10, locale: 'ru', type: 'alphanumeric', format: 'capitalized' })
 
         expect(alphanumericCapitalizedRuRegex.test(result)).toBeTruthy()
+    })
+
+    it('returns mixed alphanumeric en string', () =>
+    {
+        const result = str({ size: 20, locale: 'en', type: 'alphanumeric', format: 'mixed' })
+
+        expect(alphanumericMixedEnRegex.test(result)).toBeTruthy()
+    })
+    it('returns mixed alphanumeric ru string', () =>
+    {
+        const result = str({ size: 20, locale: 'ru', type: 'alphanumeric', format: 'mixed' })
+
+        expect(alphanumericMixedRuRegex.test(result)).toBeTruthy()
+    })
+
+    it('returns mixed alpha en string', () =>
+    {
+        const result = str({ size: 20, locale: 'en', type: 'alpha', format: 'mixed' })
+
+        expect(alphaMixedEnRegex.test(result)).toBeTruthy()
+    })
+    it('returns mixed alpha ru string', () =>
+    {
+        const result = str({ size: 20, locale: 'ru', type: 'alpha', format: 'mixed' })
+
+        console.log(result)
+
+        expect(alphaMixedRuRegex.test(result)).toBeTruthy()
     })
 
     it('returns possible null if "nullable" provided', () =>

@@ -7,7 +7,7 @@ const alphabets = {
         normal: 'abcdefghijklmnopqrstuvwxyz',
         get mixed()
         {
-            return this.en.normal + this.en.capitalized
+            return this.normal + this.capitalized
         },
     },
     ru: {
@@ -15,7 +15,7 @@ const alphabets = {
         normal: 'абвгдеёжзийклмнопрстуфхцчшщэюя',
         get mixed()
         {
-            return this.ru.normal + this.ru.capitalized
+            return this.normal + this.capitalized
         },
     },
     numbers: '000111222333444555666777888999', // duplicate number to be relativity compatible by size with language alphabets
