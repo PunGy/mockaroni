@@ -4,9 +4,9 @@ import * as utils from '@src/utils'
 const alphanumericNormalEnRegex = /^[a-z0-9]+$/ // default
 const alphanumericNormalRuRegex = /^[а-яё0-9]+$/
 const alphanumericCapitalizedEnRegex = /^[A-Z0-9]+$/
-const alphanumericCapitalizedRuRegex = /^[А-Я0-9]+$/
+const alphanumericCapitalizedRuRegex = /^[А-ЯЁ0-9]+$/
 const alphanumericMixedEnRegex = /^[a-zA-Z0-9]+$/
-const alphanumericMixedRuRegex = /^[а-яА-ЯёЁ0-9]+$/
+const alphanumericMixedRuRegex = /^[а-яёА-ЯЁ0-9]+$/
 
 const numericRegex = /^[0-9]+$/
 
