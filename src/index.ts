@@ -6,3 +6,5 @@ export * from './primitives/date'
 export * from './lists/range'
 export * from './lists/replicate'
 export * from './lists/listOf'
+
+export * from './utils'
