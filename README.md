@@ -19,6 +19,10 @@ interface Worker
     position: 'manager' | 'director' | 'clerk';
     dateOfEmployment: Date;
     achievements?: Array<'owl' | 'hard worker' | 'coffee lower' | 'gambler'>;
+    place: {
+        officeId: string;
+        floor: number;
+    };
 }
 
 // Spawn 100 workers schema
@@ -26,7 +30,8 @@ const workers: Array<Worker> = replicate({
     size: 100,
     schema: () => ({
         // Spawn capitalized string of chars with size in range of 4 to 8
-        name: str({ format: 'capitalized', type: 'alpha', size: num({ min: 4, max: 8 }) }),
+        name: str({ format: 'capitalized', type: 'alpha', size: 1 })
+            + str({ format: 'normal', type: 'alpha', size: num({ min: 4, max: 8 }) }),
 
         // Spawn number from 15 to 90
         age: num({ min: 15, max: 90 }),
