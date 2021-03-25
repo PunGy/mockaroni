@@ -7,6 +7,6 @@ export const listOf = <T>(config: Config<{ size: number; list: Array<T>; }>): Ar
 
     return Array.from(
         Array(config.size),
-        () => oneOf(config),
+        () => oneOf({ ...config, nullable: false }),
     )
 }
