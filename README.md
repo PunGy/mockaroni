@@ -8,6 +8,8 @@
 
 # Usage
 
+See [documentation](https://pungy.github.io/mockaroni/)
+
 Input:
 ```ts
 import { replicate, str, num, oneOf, date, listOf, text } from 'mockaroni'
