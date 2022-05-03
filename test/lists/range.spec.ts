@@ -10,5 +10,12 @@ describe('range', () =>
         expect(result).toEqual([0, 1, 2, 3, 4])
     })
 
+    it('returns array from zero to provided max number', () =>
+    {
+        const result = range(5)
+
+        expect(result).toEqual([0, 1, 2, 3, 4])
+    })
+
     it('returns possible null if "nullable" provided', checkNullable(range, { from: 0, to: 5 }))
 })

@@ -1,6 +1,6 @@
-import { trueOrFalse } from '@src/utils'
+import { trueOrFalse } from '@src/primitives/boolean'
 
-describe('utils', () =>
+describe('boolean', () =>
 {
     it('trueOrFalse returns boolean', () =>
     {

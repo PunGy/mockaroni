@@ -1,4 +1,4 @@
 /dist
 /module
 /scripts
-*.config.js
+*.config.ts

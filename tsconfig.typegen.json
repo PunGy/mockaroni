@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.production.json",
+  "compilerOptions": {
+    "outDir": "./temp",
+    "declaration": true,
+    "removeComments": false,
+    "declarationDir": "./types"
+  }
+}

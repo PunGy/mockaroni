@@ -1,7 +1,14 @@
-import { Config, trueOrFalse } from '../utils'
-import { num } from '../primitives/num'
+import { Config } from '../utils'
+import { num } from './num'
+import { trueOrFalse } from './boolean'
 
-export const oneOf = <T>(config: Config<{ list: Array<T>; }>): T =>
+/**
+ * Providing a value from the list
+ * @param config {Object}
+ * @param config.list - list of values
+ * @param config.nullable - result can be null
+ */
+export const oneOf = <T>(config: Config<{ list: ArrayLike<T>; }>): T =>
 {
     if (config.nullable)
         if (trueOrFalse()) return null
