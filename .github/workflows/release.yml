@@ -17,11 +17,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/build
+          publish_dir: ./docs
           keep_files: true
-      - name: Publish to npm
-        run : |
-          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          npm publish --ignore-scripts
-        env :
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
