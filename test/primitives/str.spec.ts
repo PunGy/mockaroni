@@ -19,20 +19,22 @@ const alphaUppercaseCyrillicRegex = /^[А-ЯЁ]+$/
 const alphaMixedLatinRegex = /^[A-Za-z]+$/
 const alphaMixedCyrillicRegex = /^[А-Яа-яёЁ]+$/
 
+const plainSize = 5
+const complexSize = 50
+
 describe('str', () =>
 {
     it('returns string of provided size and default presets', () =>
     {
-        const size = 10
-        const result = str({ size })
+        const result = str({ size: plainSize })
 
-        expect(result.length).toBe(size)
+        expect(result.length).toBe(plainSize)
         expect(alphaLowercaseLatinRegex.test(result)).toBeTruthy()
     })
 
     it('returns numeric string', () =>
     {
-        const result = str({ size: 5, type: 'numeric' })
+        const result = str({ size: plainSize, type: 'numeric' })
 
         expect(numericRegex.test(result)).toBeTruthy()
     })
@@ -41,43 +43,43 @@ describe('str', () =>
     {
         it('returns cyrillic alpha string', () =>
         {
-            const result = str({ size: 5, type: 'alpha', locale: 'cyrillic' })
+            const result = str({ size: plainSize, type: 'alpha', locale: 'cyrillic' })
 
             expect(alphaLowercaseCyrillicRegex.test(result)).toBeTruthy()
         })
         it('returns cyrillic alphanumeric string', () =>
         {
-            const result = str({ size: 10, locale: 'cyrillic', type: 'alphanumeric' })
+            const result = str({ size: complexSize, locale: 'cyrillic', type: 'alphanumeric' })
 
             expect(alphanumericLowercaseCyrillicRegex.test(result)).toBeTruthy()
         })
         it('returns uppercase alpha cyrillic string', () =>
         {
-            const result = str({ size: 5, locale: 'cyrillic', type: 'alpha', format: 'uppercase' })
+            const result = str({ size: plainSize, locale: 'cyrillic', type: 'alpha', format: 'uppercase' })
 
             expect(alphaUppercaseCyrillicRegex.test(result)).toBeTruthy()
         })
         it('returns uppercase alphanumeric cyrillic string', () =>
         {
-            const result = str({ size: 10, locale: 'cyrillic', type: 'alphanumeric', format: 'uppercase' })
+            const result = str({ size: complexSize, locale: 'cyrillic', type: 'alphanumeric', format: 'uppercase' })
 
             expect(alphanumericUppercaseCyrillicRegex.test(result)).toBeTruthy()
         })
         it('returns mixed alphanumeric cyrillic string', () =>
         {
-            const result = str({ size: 20, locale: 'cyrillic', type: 'alphanumeric', format: 'mixed' })
+            const result = str({ size: complexSize, locale: 'cyrillic', type: 'alphanumeric', format: 'mixed' })
 
             expect(alphanumericMixedCyrillicRegex.test(result)).toBeTruthy()
         })
         it('returns mixed alpha cyrillic string', () =>
         {
-            const result = str({ size: 10, locale: 'cyrillic', type: 'alpha', format: 'mixed' })
+            const result = str({ size: complexSize, locale: 'cyrillic', type: 'alpha', format: 'mixed' })
 
             expect(alphaMixedCyrillicRegex.test(result)).toBeTruthy()
         })
         it('returns capitalized alpha cyrillic string', () =>
         {
-            const result = str({ size: 10, locale: 'cyrillic', type: 'alpha', format: 'capitalized' })
+            const result = str({ size: plainSize, locale: 'cyrillic', type: 'alpha', format: 'capitalized' })
 
             expect(alphaCapitalizedCyrillicRegex.test(result)).toBeTruthy()
         })
@@ -87,47 +89,47 @@ describe('str', () =>
     {
         it('returns latin alpha string', () =>
         {
-            const result = str({ size: 5, locale: 'latin', type: 'alpha' })
+            const result = str({ size: plainSize, locale: 'latin', type: 'alpha' })
 
             expect(alphaLowercaseLatinRegex.test(result)).toBeTruthy()
         })
         it('returns latin alphanumeric string', () =>
         {
-            const result = str({ size: 20, locale: 'latin', type: 'alphanumeric' })
+            const result = str({ size: complexSize, locale: 'latin', type: 'alphanumeric' })
 
             expect(alphanumericLowercaseLatinRegex.test(result)).toBeTruthy()
         })
         it('returns uppercase alpha latin string', () =>
         {
-            const result = str({ size: 5, locale: 'latin', type: 'alpha', format: 'uppercase' })
+            const result = str({ size: plainSize, locale: 'latin', type: 'alpha', format: 'uppercase' })
 
             expect(alphaUppercaseLatinRegex.test(result)).toBeTruthy()
         })
         it('returns uppercase alphanumeric latin string', () =>
         {
-            const result = str({ size: 20, locale: 'latin', type: 'alphanumeric', format: 'uppercase' })
+            const result = str({ size: complexSize, locale: 'latin', type: 'alphanumeric', format: 'uppercase' })
 
             expect(alphanumericUppercaseLatinRegex.test(result)).toBeTruthy()
         })
         it('returns mixed alphanumeric latin string', () =>
         {
-            const result = str({ size: 30, locale: 'latin', type: 'alphanumeric', format: 'mixed' })
+            const result = str({ size: complexSize, locale: 'latin', type: 'alphanumeric', format: 'mixed' })
 
             expect(alphanumericMixedLatinRegex.test(result)).toBeTruthy()
         })
         it('returns mixed alpha latin string', () =>
         {
-            const result = str({ size: 10, locale: 'latin', type: 'alpha', format: 'mixed' })
+            const result = str({ size: complexSize, locale: 'latin', type: 'alpha', format: 'mixed' })
 
             expect(alphaMixedLatinRegex.test(result)).toBeTruthy()
         })
         it('returns capitalized alpha latin string', () =>
         {
-            const result = str({ size: 10, locale: 'latin', type: 'alpha', format: 'capitalized' })
+            const result = str({ size: complexSize, locale: 'latin', type: 'alpha', format: 'capitalized' })
 
             expect(alphaCapitalizedLatinRegex.test(result)).toBeTruthy()
         })
     })
 
-    it('returns possible null if "nullable" provided', checkNullable(str, { size: 5 }))
+    it('returns possible null if "nullable" provided', checkNullable(str, { size: plainSize }))
 })
