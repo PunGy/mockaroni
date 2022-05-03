@@ -1,5 +1,5 @@
 import { oneOf } from './oneOf'
-import { Config } from '../utils'
+import { nullable, Nullable } from '../utils'
 import { trueOrFalse } from './boolean'
 
 const alphabets = {
@@ -35,23 +35,42 @@ const alphabets = {
 }
 
 export type StringConfig = {
+    /**
+     * Which characters would be in a string
+     *
+     * Default: 'alpha'
+     */
     type?: 'alpha'|'numeric'|'alphanumeric';
+
+    /**
+     * Alphabet of a string
+     *
+     * Default: 'latin'
+     */
     locale?: 'cyrillic'|'latin';
+
+    /**
+     * Case of string
+     *
+     * Default: 'lowercase'
+     */
     format?: 'capitalized'|'lowercase'|'uppercase'|'mixed';
+
+    /**
+     * The size of resulting string
+     * Required
+     */
     size: number;
 }
+export function str(config: StringConfig): string
+export function str(config: Nullable<StringConfig, false>): string
+export function str(config: Nullable<StringConfig>): string | null
 /**
  * Generates a random string
- * @param config {Object}
- * @param config.size - the size of resulting string
- * @param config.type - which characters would be in a string
- * @param config.locale - alphabet of a string
- * @param config.format - case of string
- * @param config.nullable - result can be null
  */
-export const str = (config: Config<StringConfig>): string | null =>
+export function str(config: StringConfig | Nullable<StringConfig>): string | null
 {
-    if (config.nullable) if (trueOrFalse()) return null
+    if (nullable(config)) if (trueOrFalse()) return null
     config.locale ??= 'latin'
     config.format ??= 'lowercase'
     config.type ??= 'alpha'

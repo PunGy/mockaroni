@@ -1,16 +1,25 @@
-import { Config } from '../utils'
 import { trueOrFalse } from '../primitives/boolean'
+import { Nullable, nullable } from '../utils'
 
+export type ReplicateConfig<R> = {
+    /**
+     * The size of resulting array
+     */
+    size: number;
+    /**
+     * Map function
+     */
+    schema: (index: number) => R;
+}
+export function replicate<R>(config: ReplicateConfig<R>): Array<R>
+export function replicate<R>(config: Nullable<ReplicateConfig<R>, false>): Array<R>
+export function replicate<R>(config: Nullable<ReplicateConfig<R>>): Array<R> | null
 /**
  * Generates an array of values from schema (like a second parameter of Array.from)
- * @param config {Object}
- * @param config.size - the size of resulting array
- * @param config.schema - map function
- * @param config.nullable - result can be null
  */
-export const replicate = <R>(config: Config<{ size: number; schema: (index: number) => R; }>): Array<R> =>
+export function replicate<R>(config: ReplicateConfig<R> | Nullable<ReplicateConfig<R>>): Array<R> | null
 {
-    if (config.nullable) if (trueOrFalse()) return null
+    if (nullable(config)) if (trueOrFalse()) return null
 
     return Array.from(
         Array(config.size),

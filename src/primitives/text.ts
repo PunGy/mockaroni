@@ -1,7 +1,8 @@
-import { assignSoft, capitalize, Config } from '../utils'
+import { assignSoft, capitalize, Nullable, nullable } from '../utils'
 import { str, StringConfig } from './str'
 import { oneOf } from './oneOf'
 import { replicate } from '../lists/replicate'
+import { trueOrFalse } from './boolean'
 
 export type PartialWordsSet = {
     words?: Array<string>;
@@ -26,26 +27,57 @@ export const wordsSet = {
     },
 }
 
+export type TextConfig = {
+    /**
+     * The content of resulting text, would it be a random strings, names or plain words
+     *
+     * Default: 'words'
+     */
+    type?: 'words'|'random_string'|'names';
+
+    /**
+     * Genders of names if the type is 'names'
+     *
+     * Default: 'mixed'
+     */
+    namesGender?: 'male'|'female'|'mixed';
+
+    /**
+     * Config of random string if the type is 'random_string'
+     *
+     * Default: { size: 7 }
+     */
+    randomStringConfig?: StringConfig;
+
+    /**
+     * Custom list of words and names
+     *
+     * Default: {}
+     */
+    wordsSet?: PartialWordsSet;
+
+    /**
+     * Should the text be capitalized (first letter is in upper case)
+     *
+     * Default: false
+     */
+    capitalized?: boolean;
+
+    /**
+     * Count of words in resulting text
+     */
+    size: number;
+}
+export function text(config: TextConfig): string
+export function text(config: Nullable<TextConfig, false>): string
+export function text(config: Nullable<TextConfig>): string | null
+
 /**
  * Generates a random text separated by spaces
- * @param config {Object}
- * @param config.wordsCount - count of words in resulting text
- * @param config.type - the content of resulting text, would it be a random strings, names or plain words
- * @param config.randomStringConfig - config of random string if the type is 'random_string'
- * @param config.namesGender - genders of names if the type is 'names'
- * @param config.capitalized - should the text be capitalized (first letter is in upper case)
- * @param config.wordsSet - custom list of words and names
- * @param config.nullable - result can be null
  */
-export const text = (config: Config<{
-    type?: 'words'|'random_string'|'names';
-    namesGender?: 'male'|'female'|'mixed';
-    randomStringConfig?: StringConfig;
-    wordsSet?: PartialWordsSet;
-    capitalized?: boolean;
-    wordsCount: number;
-}>): string =>
+export function text(config: TextConfig | Nullable<TextConfig>): string | null
 {
+    if (nullable(config)) if (trueOrFalse()) return null
     config.type ??= 'words'
     config.namesGender ??= 'mixed'
     config.randomStringConfig ??= { size: 5 }
@@ -59,11 +91,11 @@ export const text = (config: Config<{
             : wordsSet[config.type][config.namesGender]
 
     const generateWord = config.type === 'random_string'
-        ? () => str(config.randomStringConfig)
+        ? () => str(config.randomStringConfig ?? { size: 7 })
         : () => oneOf({ list: wordSet })
 
     const result = replicate({
-        size: config.wordsCount,
+        size: config.size,
         schema: generateWord,
     }).join(' ')
 

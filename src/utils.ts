@@ -1,4 +1,9 @@
-export type Config<T extends Record<string, any> = Record<string, any>> = T & { nullable?: boolean; }
+export type Nullable<T extends Record<any, any>, N extends boolean = true> = T & { nullable?: N; }
+export const nullable = <T>(obj: T): obj is Nullable<T> => 'nullable' in obj
+
+export type ArrayElementsType <T extends ArrayLike<unknown>> = T extends ArrayLike<infer ArrayElementsType>
+    ? ArrayElementsType
+    : never
 
 export function assignSoft<T, U>(target: T, source: U): T & U;
 export function assignSoft<T, U, V>(target: T, source1: U, source2: V): T & U & V;

@@ -1,7 +1,7 @@
 import * as boolean from '@src/primitives/boolean'
 import * as utils from '@src/utils'
 
-export const checkNullable = <T, R>(target: (config: utils.Config<T>) => R, config: T) => () =>
+export const checkNullable = <T, R>(target: (config: utils.Nullable<T>) => R, config: T) => () =>
 {
     jest.spyOn(boolean, 'trueOrFalse').mockImplementationOnce(() => true)
     const nullResult = target({ nullable: true, ...config })

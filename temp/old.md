@@ -98,24 +98,176 @@ output:
 ]
 ```
 
-# Install
+# Functions
 
-Library can be install via packet manager like npm or yarn
-```shell
-yarn add mockaroni
-```
-or
-```shell
-npm install mockaroni
-```
+Every function accepts a config object with detail information about how to generate desired value. You also can replace default randomizer by using `Mockaroni.setConfig({ random: randomFn })`
 
-Then, you can import it like commonjs or es6 import
+Also, every config has parameter `{ nullable: boolean }`. If it's provided and is `true` - return value might be a `null`
+
+## Primitives
+
+Contains functions which is produces primitive values
+
+### trueOrFalse
+
+Generates random `true` or `false` value. No parameters
+
+`config`: no such
+
+`Example`
 ```js
-import { num, text } from 'mockaroni'
-// or
-const { num, text } = require('mockaroni')
+trueOrFalse()
+// true
 ```
 
-### Browser
+### Date
 
-You also can download 
+Generates a random date
+
+`Config:`
+```ts
+type DateConfig = { 
+    min: Date; // start point of date
+    max: Date; // end point of date
+}
+```
+`Example`
+```js
+date({ min: new Date('2018'), max: new Date('2020') })
+// 2019-02-01T10:02:19.628Z
+```
+
+### Num
+
+Generates a random number
+
+`Config:`
+```ts
+export type NumConfig = { 
+    min: number; // low border of numbers
+    max: number; // high border of numbers
+    type?: 'float'|'int'; // would a result number be an integer or float
+}
+```
+
+`Example:`
+```js
+num({ min: 10, max: 20 })
+// 12
+```
+
+### OneOf
+
+Providing a value from the list
+
+`Config:`
+```ts
+type OneOfConfig<T> = {
+    list: ArrayLike<T>; // list of values
+}
+```
+
+```js
+oneOf({ list: ['first', 'second', 'third'] })
+// 'second'
+
+oneOf({ list: 'abcd' })
+// 'c'
+```
+
+### Str
+
+Generates a random string
+
+`Config:`
+```ts
+export type StringConfig = {
+    /**
+     * Which characters would be in a string
+     * Default: 'alpha'
+     */
+    type?: 'alpha'|'numeric'|'alphanumeric';
+
+    /**
+     * Alphabet of a string
+     * Default: 'latin'
+     */
+    locale?: 'cyrillic'|'latin';
+
+    /**
+     * Case of string
+     * Default: 'lowercase'
+     */
+    format?: 'capitalized'|'lowercase'|'uppercase'|'mixed';
+
+    /**
+     * The size of resulting string
+     * Required
+     */
+    size: number;
+}
+```
+
+`Example`
+```js
+str({ type: 'alphanumeric', size: 10 })
+// 'a0s2eew123'
+```
+
+### Text
+
+Generates a random text separated by spaces
+
+`Config:`
+```ts
+type PartialWordsSet = {
+    words?: Array<string>;
+    names?: {
+        male?: Array<string>;
+        female?: Array<string>;
+        mixed?: Array<string>;
+    };
+}
+
+type TextConfig = {
+    /**
+     * The content of resulting text, would it be a random strings, names or plain words
+     * Default: 'words'
+     */
+    type?: 'words'|'random_string'|'names';
+
+    /**
+     * Genders of names if the type is 'names'
+     * Default: 'mixed'
+     */
+    namesGender?: 'male'|'female'|'mixed';
+
+    /**
+     * Config of random string if the type is 'random_string'
+     * Default: { size: 7 }
+     */
+    randomStringConfig?: StringConfig;
+
+    /**
+     * Custom list of words and names
+     * Default: {}
+     */
+    wordsSet?: PartialWordsSet;
+
+    /**
+     * Should the text be capitalized (first letter is in upper case)
+     * Default: false
+     */
+    capitalized?: boolean;
+
+    /**
+     * Count of words in resulting text
+     */
+    size: number;
+}
+```
+
+`Example:`
+```js
+text({ wordsCount: 20 })
+```

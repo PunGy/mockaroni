@@ -1,16 +1,25 @@
-import { Config } from '../utils'
+import { ArrayElementsType, Nullable, nullable } from '../utils'
 import { num } from './num'
 import { trueOrFalse } from './boolean'
 
+export type OneOfReturnValue<T> = ArrayElementsType<ArrayLike<T>>
+
+export type OneOfConfig<T> = {
+    /**
+     * List of values
+     */
+    list: ArrayLike<T>;
+}
+export function oneOf<T>(config: OneOfConfig<T>): OneOfReturnValue<T>
+export function oneOf<T>(config: Nullable<OneOfConfig<T>, false>): OneOfReturnValue<T>
+export function oneOf<T>(config: Nullable<OneOfConfig<T>>): OneOfReturnValue<T> | null
+
 /**
  * Providing a value from the list
- * @param config {Object}
- * @param config.list - list of values
- * @param config.nullable - result can be null
  */
-export const oneOf = <T>(config: Config<{ list: ArrayLike<T>; }>): T =>
+export function oneOf<T>(config: OneOfConfig<T> | Nullable<OneOfConfig<T>>): OneOfReturnValue<T> | null
 {
-    if (config.nullable)
+    if (nullable(config))
         if (trueOrFalse()) return null
 
     return config.list[num({ min: 0, max: config.list.length - 1 })]

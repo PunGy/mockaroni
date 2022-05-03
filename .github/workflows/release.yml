@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v1.*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run : yarn ci
+      - run : yarn build:docs
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build
+          keep_files: true
+      - name: Publish to npm
+        run : |
+          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
+          npm publish --ignore-scripts
+        env :
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

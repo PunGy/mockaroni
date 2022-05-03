@@ -1,17 +1,30 @@
-import { Config } from '../utils'
+import { ArrayElementsType, Nullable, nullable } from '../utils'
 import { oneOf } from '../primitives/oneOf'
 import { trueOrFalse } from '../primitives/boolean'
 
+export type ListOfReturnValue<T> = Array<ArrayElementsType<ArrayLike<T>>>;
+
+export type ListOfConfig<T> = {
+    /**
+     * The size of resulting array
+     */
+    size: number;
+
+    /**
+     * List of values which resulting array will contain
+     */
+    list: ArrayLike<T>;
+}
+export function listOf<T>(config: ListOfConfig<T>): ListOfReturnValue<T>
+export function listOf<T>(config: Nullable<ListOfConfig<T>, false>): ListOfReturnValue<T>
+export function listOf<T>(config: Nullable<ListOfConfig<T>>): ListOfReturnValue<T> | null
+
 /**
  * Generates an array of provided values from list param
- * @param config {Object}
- * @param config.size - the size of resulting array
- * @param config.list - list of values which resulting array will contain
- * @param config.nullable - result can be null
  */
-export const listOf = <T>(config: Config<{ size: number; list: Array<T>; }>): Array<T> =>
+export function listOf<T>(config: ListOfConfig<T> | Nullable<ListOfConfig<T>>): ListOfReturnValue<T> | null
 {
-    if (config.nullable) if (trueOrFalse()) return null
+    if (nullable(config)) if (trueOrFalse()) return null
 
     return Array.from(
         Array(config.size),

@@ -4,7 +4,7 @@ export type MockaroniConfig = {
      */
     random: () => number;
 }
-export const globalConfig = {
+export const globalConfig: MockaroniConfig = {
     random: Math.random,
 }
 

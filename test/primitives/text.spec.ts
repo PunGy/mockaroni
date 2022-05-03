@@ -4,7 +4,7 @@ describe('text', () =>
 {
     it('returns text of set size with default values', () =>
     {
-        const result = text({ wordsCount: 10 })
+        const result = text({ size: 10 })
 
         const resultSplit = result.split(' ')
         expect(resultSplit.length === 10).toBeTruthy()
@@ -13,9 +13,9 @@ describe('text', () =>
 
     it('returns names', () =>
     {
-        const resultMixed = text({ wordsCount: 10, type: 'names', namesGender: 'mixed' })
-        const resultFemale = text({ wordsCount: 10, type: 'names', namesGender: 'female' })
-        const resultMale = text({ wordsCount: 10, type: 'names', namesGender: 'male' })
+        const resultMixed = text({ size: 10, type: 'names', namesGender: 'mixed' })
+        const resultFemale = text({ size: 10, type: 'names', namesGender: 'female' })
+        const resultMale = text({ size: 10, type: 'names', namesGender: 'male' })
 
         expect(resultMixed.split(' ').every(name => wordsSet.names.mixed.includes(name)))
         expect(resultFemale.split(' ').every(name => wordsSet.names.female.includes(name)))
@@ -26,7 +26,7 @@ describe('text', () =>
     {
         const customWordsSet = { words: ['word1', 'word2', 'word3'] }
         const result = text({
-            wordsCount: 10,
+            size: 10,
             type: 'names',
             wordsSet: customWordsSet,
             namesGender: 'mixed',
@@ -38,7 +38,7 @@ describe('text', () =>
     it('returns random string words', () =>
     {
         const result = text({
-            wordsCount: 10,
+            size: 10,
             type: 'random_string',
         })
 
@@ -48,7 +48,7 @@ describe('text', () =>
     it('returns capitalized text', () =>
     {
         const result = text({
-            wordsCount: 10,
+            size: 10,
             capitalized: true,
         })
 

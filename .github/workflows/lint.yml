@@ -1,15 +1,33 @@
-name: Linting
+name: Linting and Testing
 on: [push, pull_request]
+
 jobs:
-  check:
-    runs-on: ubuntu-latest
+  run:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-versions:
+          - 10
+          - 12
+          - 14
+
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
-      - name: Install dependencies
-        run: yarn
-      - name: Lint
-        run: yarn lint
+          node-version: ${{ matrix.node-version }}
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: node_modules/
+          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('yarn*.lock') }}
+
+      - run: yarn ci
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - run: yarn test:ci
+      - run: yarn lint
