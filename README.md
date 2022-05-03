@@ -118,4 +118,11 @@ const { num, text } = require('mockaroni')
 
 ### Browser
 
-You also can download 
+You also can add it as a script like this
+```html
+<script src="https://cdn.jsdelivr.net/gh/pungy/mockaroni@v1.0.0/web-bundle/index.js"></script>
+```
+Or like a module script (notice that its different files)
+```html
+<script type="module" src="https://cdn.jsdelivr.net/gh/pungy/mockaroni@v1.0.0/web-bundle/index.mjs"></script>
+```
