@@ -24,6 +24,9 @@ jobs:
           path: node_modules/
           key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('yarn*.lock') }}
 
+      - run: yarn ci
+        if: steps.cache.outputs.cache-hit != 'true'
+
       - name: Generate coverage report
         run: yarn test:coverage
       - name: Upload coverage to Codecov
