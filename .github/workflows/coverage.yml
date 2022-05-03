@@ -1,4 +1,4 @@
-name: Test
+name: Publish coverage at Codecov
 on: [push]
 
 jobs:
